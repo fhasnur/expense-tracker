@@ -4,21 +4,12 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/spf13/cobra"
+	"github.com/fhasnur/expense-tracker/cmd"
 )
 
 func main() {
-	fmt.Println("Expense Tracker")
-	var rootCmd = &cobra.Command{
-		Use:   "expense-tracker",
-		Short: "CLI tool for managing expenses",
-		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println(args[0])
-		},
-	}
-
-	if err := rootCmd.Execute(); err != nil {
-		fmt.Println(err)
+	if err := cmd.Execute(); err != nil {
+		fmt.Fprintf(os.Stderr, "Error: %v\n", err)
 		os.Exit(1)
 	}
 }
