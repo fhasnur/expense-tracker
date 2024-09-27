@@ -1,6 +1,9 @@
 package expense
 
-import "time"
+import (
+	"fmt"
+	"time"
+)
 
 type Expense struct {
 	ID          int64     `json:"id"`
@@ -41,4 +44,17 @@ func AddExpense(description string, amount float64) (int, error) {
 	}
 
 	return int(newExpenseId), nil
+}
+
+func ListExpenses() ([]Expense, error) {
+	expenses, err := ReadExpensesFromFile()
+	if err != nil {
+		return nil, err
+	}
+
+	if len(expenses) == 0 {
+		return nil, fmt.Errorf("no expenses found")
+	}
+
+	return expenses, nil
 }
