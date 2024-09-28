@@ -58,3 +58,25 @@ func ListExpenses() ([]Expense, error) {
 
 	return expenses, nil
 }
+
+func DeleteExpense(id int64) error {
+	expenses, err := ReadExpensesFromFile()
+	if err != nil {
+		return err
+	}
+
+	var found bool
+	for i, expense := range expenses {
+		if expense.ID == id {
+			expenses = append(expenses[:i], expenses[i+1:]...)
+			found = true
+			break
+		}
+	}
+
+	if !found {
+		return fmt.Errorf("expense with ID %d not found", id)
+	}
+
+	return WriteExpensesToFile(expenses)
+}
