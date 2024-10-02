@@ -80,3 +80,38 @@ func DeleteExpense(id int64) error {
 
 	return WriteExpensesToFile(expenses)
 }
+
+func SummaryExpenses(month int) error {
+	expenses, err := ReadExpensesFromFile()
+	if err != nil {
+		return err
+	}
+
+	if len(expenses) == 0 {
+		return fmt.Errorf("no expenses found")
+	}
+
+	var total float64
+	var filteredExpenses []Expense
+
+	if month > 0 {
+		for _, expense := range expenses {
+			if int(expense.CreatedAt.Month()) == month {
+				total += expense.Amount
+				filteredExpenses = append(filteredExpenses, expense)
+			}
+		}
+		if len(filteredExpenses) == 0 {
+			return fmt.Errorf("no expenses found for month %d", month)
+		}
+		monthName := time.Month(month).String()
+		fmt.Printf("Total expenses for %s: $%.0f\n", monthName, total)
+	} else {
+		for _, expense := range expenses {
+			total += expense.Amount
+		}
+		fmt.Printf("Total expenses: $%.0f\n", total)
+	}
+
+	return nil
+}

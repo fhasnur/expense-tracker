@@ -9,7 +9,12 @@ func NewRootCmd() *cobra.Command {
 		Long:  "Manage your expenses with ease using Expense Tracker",
 	}
 
-	cmd.AddCommand(NewAddCmd(), NewListCmd(), NewDeleteCmd())
+	cmd.AddCommand(
+		NewAddCmd(),
+		NewListCmd(),
+		NewDeleteCmd(),
+		NewSummaryCmd(),
+	)
 
 	return cmd
 }
