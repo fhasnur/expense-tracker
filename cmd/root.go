@@ -4,7 +4,7 @@ import "github.com/spf13/cobra"
 
 func NewRootCmd() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "task-cli",
+		Use:   "expense-tracker",
 		Short: "Expense Tracker is a CLI tool for managing expenses.",
 		Long:  "Manage your expenses with ease using Expense Tracker",
 	}
