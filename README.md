@@ -89,4 +89,4 @@ Feel free to submit pull requests or open issues for new features, improvements,
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
