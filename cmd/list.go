@@ -21,7 +21,7 @@ func NewListCmd() *cobra.Command {
 			fmt.Printf(
 				"%-3s | %-20s | %-15s | %-10s\n",
 				"ID",
-				"Date",
+				"Date/Time",
 				"Description",
 				"Amount",
 			)
@@ -29,7 +29,7 @@ func NewListCmd() *cobra.Command {
 
 			for _, expense := range expenses {
 				fmt.Printf(
-					"%-3d | %-20s | %-15s | %-10.2f\n",
+					"%-3d | %-20s | %-15s | $%-10.0f\n",
 					expense.ID,
 					expense.UpdatedAt.Format("2006-01-02 15:04"),
 					expense.Description,
